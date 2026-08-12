@@ -57,6 +57,57 @@
 	setInterval(update, 1000);
 })();
 
+// Optimize background videos for mobile devices to reduce lag.
+(function(){
+	async function optimizeVideos(){
+		const ids = ['page-bg-video','hero-video'];
+		for(const id of ids){
+			const v = document.getElementById(id);
+			if(!v) continue;
+			const defaultSrc = v.dataset && v.dataset.src ? v.dataset.src : null;
+			const smallSrc = v.dataset && v.dataset.srcSmall ? v.dataset.srcSmall : null;
+
+			// If device is narrow, prefer a small video if available.
+			const isNarrow = window.innerWidth <= 520;
+
+			if(isNarrow){
+				if(smallSrc){
+					try{
+						// Check if small asset exists (HEAD request).
+						const res = await fetch(smallSrc, { method: 'HEAD' });
+						if(res && res.ok){
+							v.innerHTML = `<source src="${smallSrc}" type="video/mp4">`;
+							v.setAttribute('preload','auto');
+							v.load();
+							v.play().catch(()=>{});
+							continue;
+						}
+					}catch(e){ /* fallthrough to hiding video */ }
+				}
+
+				// No small video available — hide heavy video on narrow devices so poster image shows.
+				v.pause();
+				v.style.display = 'none';
+				continue;
+			}
+
+			// For wider devices, load default source lazily.
+			if(defaultSrc){
+				try{
+					v.innerHTML = `<source src="${defaultSrc}" type="video/mp4">`;
+					v.setAttribute('preload','metadata');
+					v.load();
+					v.play().catch(()=>{});
+				}catch(e){/* ignore */}
+			}
+		}
+	}
+
+	window.addEventListener('DOMContentLoaded', ()=>{ optimizeVideos(); });
+	// Re-run on orientation/resize to handle device rotation.
+	window.addEventListener('resize', ()=>{ optimizeVideos(); });
+})();
+
 // --- Accent (neon/subtle) toggle -----------------------------------
 (function(){
 	const btn = document.getElementById('accent-toggle');
