@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Neon Nights</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <video id="page-bg-video" autoplay muted loop playsinline poster="assets/hero.jpg">
+    <source src="assets/bg-loop.mp4" type="video/mp4">
+    <!-- fallback: poster image shown when video unsupported -->
+  </video>
+
+  <!-- ============================================================
+       This is a bare scaffold. Nothing here is "done".
+       Build the page from the reference layout in the task brief.
+       The comments below mark decisions we're deliberately NOT
+       making for you — they're the point of the exercise.
+       ============================================================ -->
+
+  <!-- HEADER: sticky. Logo left, nav right, plus the dark-mode toggle. -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">
+        <img src="assets/logo.png" alt="Neon Nights" />
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#">Home</a>
+        <a href="#schedule">Schedule</a>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <button id="accent-toggle" aria-pressed="false" aria-label="Toggle neon accent">⚡</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO: full-width background. -->
+  <!-- Asset provided: assets/hero.jpg (6000x4000, ~8.6MB) and an
+       optional assets/bg-loop.mp4 (~34MB). Decide what you actually
+       ship, and at what size — see DECISIONS.md. -->
+  <section class="hero">
+    <video id="hero-video" autoplay muted loop playsinline poster="assets/hero.jpg">
+      <source src="assets/bg-loop.mp4" type="video/mp4">
+      <!-- fallback: poster image (hero.jpg) shown when video unsupported -->
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+      <h1>NEON NIGHTS</h1>
+      <p class="lead">Doors open this Friday at 7 PM — don't be late!</p>
+      <div id="countdown" aria-live="polite">
+        <div class="countdown">
+          <div class="cd-item"><span class="cd-num">00</span><span class="cd-label">Days</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-item"><span class="cd-num">00</span><span class="cd-label">Hours</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-item"><span class="cd-num">00</span><span class="cd-label">Minutes</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-item"><span class="cd-num">00</span><span class="cd-label">Seconds</span></div>
+        </div>
+      </div>
+      <p><a class="btn primary" href="#">GET TICKETS</a></p>
+    </div>
+  </section>
+
+  <!-- FEATURES: three columns (Live DJs · Street Food · Show). -->
+  <section class="features container">
+    <article class="feature">
+      <h3>🎧 Live DJs</h3>
+      <p>Top DJs spinning vinyl and digital bangers.</p>
+    </article>
+    <article class="feature">
+      <h3>🍜 Street Food</h3>
+      <p>Local vendors serving late-night favourites.</p>
+      <div class="vendor-list" aria-label="Food vendors">
+        <div class="vendor">
+          <div class="vendor-name">Taco Tango</div>
+          <div class="vendor-desc">Spicy al pastor tacos</div>
+        </div>
+        <div class="vendor">
+          <div class="vendor-name">Noodle Nest</div>
+          <div class="vendor-desc">Korean-style noodles</div>
+        </div>
+        <div class="vendor">
+          <div class="vendor-name">Sugar Comet</div>
+          <div class="vendor-desc">Late-night desserts</div>
+        </div>
+      </div>
+    </article>
+    <article class="feature">
+      <h3>🎆 Show</h3>
+      <p>Lights, lasers, and a midnight finale.</p>
+      <div class="show-brief">
+        <p>Expect a synchronized light show with pyro and a DJ-led closing set.</p>
+        <button class="btn small" id="show-lineup-toggle">View lineup</button>
+      </div>
+      <div class="show-details" id="show-lineup" hidden>
+        <ul>
+          <li>10:00 PM — Opening visuals</li>
+          <li>11:30 PM — Special guest set</li>
+          <li>11:50 PM — Countdown + finale</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- SCHEDULE: simple table (time · what's on). -->
+  <section id="schedule" class="schedule container">
+    <h2>Schedule</h2>
+    <table>
+      <thead>
+        <tr><th>Time</th><th>Event</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>6:30 PM</td><td>Doors</td></tr>
+        <tr><td>8:00 PM</td><td>First act</td></tr>
+        <tr><td>10:00 PM</td><td>Headliner</td></tr>
+        <tr><td>12:00 AM</td><td>Close</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SIGNUP: email capture. This site is static hosting — decide
+       what actually happens on submit and record the options. -->
+  <section class="signup container">
+    <h2>Get notified</h2>
+    <form id="signup-form">
+      <label for="email">Email</label>
+      <div class="signup-row">
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        <button class="btn" type="submit">Notify me</button>
+      </div>
+      <div id="signup-message" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <footer class="site-footer container">
+    <div class="footer-inner">
+      <div>© Neon Nights</div>
+      <div class="social">Follow us — <a href="#">Instagram</a></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- Bootstrap JS bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
