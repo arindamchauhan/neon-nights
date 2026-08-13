@@ -88,6 +88,9 @@
 
 				// No small video available — hide heavy video on narrow devices so poster image shows.
 				v.pause();
+				// Remove sources/poster to avoid any network requests
+				v.innerHTML = '';
+				v.removeAttribute('poster');
 				v.style.display = 'none';
 				continue;
 			}

@@ -290,6 +290,14 @@ a { color: inherit; }
    .schedule table{ min-width:520px; }
 }
 
+/* Mobile animated fallback to mimic video motion without large files */
+@media (max-width:520px){
+   .hero{ background: linear-gradient(120deg, rgba(10,8,20,0.85), rgba(18,10,40,0.88)); }
+   .hero::after{ content:''; position:absolute; inset:0; z-index:1; pointer-events:none; background: linear-gradient(90deg, rgba(138,43,226,0.06), rgba(0,229,255,0.03)); mix-blend-mode: screen; opacity:0.85; animation: nn-shift 8s linear infinite; }
+   .hero-inner{ position:relative; z-index:3; }
+   @keyframes nn-shift{ 0%{ transform:translateX(-15%);} 50%{ transform:translateX(15%);} 100%{ transform:translateX(-15%);} }
+}
+
 /* Respect prefers-reduced-motion: avoid autoplaying video */
 @media (prefers-reduced-motion: reduce) {
    .hero video{ display:none; }
