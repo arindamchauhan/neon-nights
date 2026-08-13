@@ -1,0 +1,4 @@
+PLACEHOLDER
+This file is a placeholder for assets/bg-loop-small.mp4.
+Replace with an actual small mp4 (H.264) produced by ffmpeg, for example:
+ffmpeg -i assets/bg-loop.mp4 -c:v libx264 -preset fast -b:v 350k -crf 28 -c:a aac -b:a 64k assets/bg-loop-small.mp4

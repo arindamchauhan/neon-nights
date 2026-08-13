@@ -104,7 +104,9 @@
 					v.innerHTML = `<source src="${defaultSrc}" type="video/mp4">`;
 					v.setAttribute('preload','metadata');
 					v.load();
-					v.play().catch(()=>{});
+					// If playback fails, hide video and fall back to poster/gradient
+					v.play().catch(()=>{ v.innerHTML=''; v.style.display='none'; });
+					v.addEventListener('error', ()=>{ v.innerHTML=''; v.style.display='none'; });
 				}catch(e){/* ignore */}
 			}
 		}

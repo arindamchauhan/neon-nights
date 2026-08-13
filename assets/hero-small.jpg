@@ -1,0 +1,6 @@
+PLACEHOLDER
+This file is a placeholder for assets/hero-small.jpg.
+Replace with a compressed JPEG or WebP produced by ffmpeg or ImageMagick, for example:
+ffmpeg -i assets/hero.jpg -vf "scale=800:-2" -lossless 0 -q:v 60 assets/hero-small.webp
+or
+ffmpeg -i assets/hero.jpg -vf "scale=1280:-2" -q:v 6 assets/hero-small.jpg
