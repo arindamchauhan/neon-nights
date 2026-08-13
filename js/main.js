@@ -77,6 +77,7 @@
 						const res = await fetch(smallSrc, { method: 'HEAD' });
 						if(res && res.ok){
 							v.innerHTML = `<source src="${smallSrc}" type="video/mp4">`;
+							// don't set poster on narrow devices to avoid extra image download
 							v.setAttribute('preload','auto');
 							v.load();
 							v.play().catch(()=>{});
@@ -91,9 +92,12 @@
 				continue;
 			}
 
-			// For wider devices, load default source lazily.
+			// For wider devices, load default source lazily and set poster if provided.
 			if(defaultSrc){
 				try{
+					if(v.dataset && v.dataset.poster){
+					  v.setAttribute('poster', v.dataset.poster);
+					}
 					v.innerHTML = `<source src="${defaultSrc}" type="video/mp4">`;
 					v.setAttribute('preload','metadata');
 					v.load();

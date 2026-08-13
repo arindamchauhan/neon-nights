@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <video id="page-bg-video" autoplay muted loop playsinline preload="none" poster="assets/hero.jpg" data-src="assets/bg-loop.mp4" data-src-small="assets/bg-loop-small.mp4">
-    <source src="assets/bg-loop.mp4" type="video/mp4">
+  <video id="page-bg-video" autoplay muted loop playsinline preload="none" data-poster="assets/hero.jpg" data-src="assets/bg-loop.mp4" data-src-small="assets/bg-loop-small.mp4">
+    <!-- source is injected lazily by JS -->
     <!-- fallback: poster image shown when video unsupported -->
   </video>
 
@@ -44,8 +44,8 @@
        optional assets/bg-loop.mp4 (~34MB). Decide what you actually
        ship, and at what size — see DECISIONS.md. -->
   <section class="hero">
-    <video id="hero-video" autoplay muted loop playsinline preload="none" poster="assets/hero.jpg" data-src="assets/bg-loop.mp4" data-src-small="assets/bg-loop-small.mp4">
-      <source src="assets/bg-loop.mp4" type="video/mp4">
+    <video id="hero-video" autoplay muted loop playsinline preload="none" data-poster="assets/hero.jpg" data-src="assets/bg-loop.mp4" data-src-small="assets/bg-loop-small.mp4">
+      <!-- source is injected lazily by JS -->
       <!-- fallback: poster image (hero.jpg) shown when video unsupported -->
     </video>
     <div class="hero-overlay"></div>
